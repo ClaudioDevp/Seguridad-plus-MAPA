@@ -1,10 +1,12 @@
 import { AppRoutes } from "@/lib/models/AppRoutes";
 import { useNavigate } from "react-router-dom";
-import styles from "./AppPage.module.css";
+import styles from "./AppModal.module.css";
 import { Modal } from "@/components/Modal/Modal";
+import { useModalStore } from "@/lib/stores/modalStore";
 
 export default function AppModal() {
   const navigate = useNavigate();
+  const closeModal = useModalStore(s => s.closeModal)
 
   return (
     <Modal id="AppSectionModal">
@@ -14,7 +16,10 @@ export default function AppModal() {
         </button>
         <button
           className={styles.button}
-          onClick={() => navigate(AppRoutes.app.register.abs)}
+          onClick={() => {
+            closeModal()
+            navigate(AppRoutes.app.register.abs)
+          }}
         >
           Registrarte
         </button>

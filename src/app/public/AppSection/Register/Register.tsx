@@ -7,14 +7,6 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import { useEffect, useRef, useState } from 'react';
 import { getMunicipalities } from '@/lib/services/supabase';
 import { useAuthStore } from '@/lib/stores/authStore';
-import { Modal } from '@/components/Modal/Modal';
-import { useModalStore } from '@/lib/stores/modalStore';
-import {
-  RecaptchaVerifier,
-  type ConfirmationResult,
-  linkWithPhoneNumber,
-} from 'firebase/auth';
-import { auth } from '@/lib/services/firebase';
 
 const schema = z.object({
   email: z.string().min(1, "Campo obligatorio").email(),
@@ -34,12 +26,8 @@ const schema = z.object({
 
 export default function Register() {
   const [municipalities, setMunicipalities] = useState<string[]>([]);
-  const phoneNumber = useRef("");
-  const confirmationResult = useRef<ConfirmationResult | null>(null);
-  const registrarConEmail = useAuthStore((s) => s.registerWithEmailAndPassword);
+  const registrar = useAuthStore((s) => s.registerUser);
   const municipalitySelect = useRef<HTMLSelectElement>(null);
-  const openModal = useModalStore((s) => s.openModal);
-  const closeModal = useModalStore((s) => s.closeModal);
 
   useEffect(() => {
     const fetch = async () => {
@@ -49,69 +37,21 @@ export default function Register() {
     fetch();
   }, []);
 
-  const setupRecaptcha = () => {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'invisible',
-        callback: () => {
-          console.log("reCAPTCHA verificado");
-        },
-        'expired-callback': () => {
-          console.warn("reCAPTCHA expirado");
-        }
-      });
-    }
-  };
 
   const registerUser = async (data: z.infer<typeof schema>) => {
     console.log({ ...data, municipality_id: municipalitySelect.current?.value });
-    phoneNumber.current = "+56" + data.phone;
 
     try {
-      const userCredential = await registrarConEmail(data.email, data.password);
-      console.log("Usuario registrado y correo enviado");
-
-      setupRecaptcha();
-
-      confirmationResult.current = await linkWithPhoneNumber(
-        userCredential.user,
-        phoneNumber.current,
-        window.recaptchaVerifier
-      );
-      console.log("SMS enviado");
-      openModal("VerifyPhoneNumberModal");
+      const res = await registrar(data.email, data.password, `+56${data.phone}`, municipalitySelect.current?.value ?? "");
+      console.log(res)
     } catch (err) {
-      console.error("Error en el registro/verificación:", err);
+      console.error("Error en el registro:", err);
     }
   };
 
-  const handleConfirmNumber = async (data: { code: string }) => {
-    if (confirmationResult.current) {
-      try {
-        await confirmationResult.current.confirm(data.code);
-        console.log("Número verificado exitosamente");
-        closeModal();
-      } catch (err) {
-        console.error("Código inválido:", err);
-      }
-    }
-  };
 
   return (
     <>
-      <Modal id="VerifyPhoneNumberModal">
-        <ZodForm
-          schema={z.object({ code: z.string().min(1, "Debes ingresar el código") })}
-          onSubmit={handleConfirmNumber}
-        >
-          <ZodInputForm
-            name="code"
-            label={`Ingresa el código enviado al número ${phoneNumber.current}`}
-            type="text"
-          />
-        </ZodForm>
-      </Modal>
-
       <div className={styles.container}>
         <div className={styles.card}>
           <div className={styles.header}>

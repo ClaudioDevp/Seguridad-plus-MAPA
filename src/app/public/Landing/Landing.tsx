@@ -1,8 +1,8 @@
 import { useAuthStore } from "@/lib/stores/authStore"
 import styles from "./Landing.module.css"
-import MuniModal from "../MuniPage/MuniModal"
+import MuniModal from "../MuniSection/MuniModal/MuniModal"
 import { useModalStore } from "@/lib/stores/modalStore"
-import AppModal from "../AppPage/AppPage"
+import AppModal from "../AppSection/AppModal/AppModal"
 
 export default function Landing() {
   const openModal = useModalStore(s => s.openModal)
