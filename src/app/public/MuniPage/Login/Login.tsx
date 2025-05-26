@@ -1,29 +1,27 @@
 // src/components/Login.jsx
-import LogoMaullin from '@/assets/img/lo_maullin.png';
+import styles from './Login.module.css';
 import { z } from 'zod';
 import { ZodForm } from '@/components/forms/ZodFrom/ZodForm';
 import { ZodInputForm } from '@/components/forms/ZodInputForm/ZodInputForm';
-
-import styles from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
-import { AppRoutes } from '@/models/AppRoutes';
-import { useAuthStore } from '@/stores/authStore';
+import { AppRoutes } from '@/lib/models/AppRoutes';
+import { useAuthStore } from '@/lib/stores/authStore';
 
 
 const schema = z.object({
   email: z.string().min(1, "Campo obligatorio").email(),
   password: z.string().min(6, "Minimo 6 careacteres"),
 })
-type schemaType = z.infer<typeof schema>
+
 export default function Login() {
   const login = useAuthStore(s => s.login)
   const navigate = useNavigate()
 
 
-  const loginUser = async (data: schemaType) => {
+  const loginUser = async (data: z.infer<typeof schema>) => {
     try {
-      const {email, password} = data
-      await login(email, password )
+      const { email, password } = data
+      await login(email, password)
       navigate(AppRoutes.private.dashboard.abs)
       console.log('✅ Usuario autenticado');
     } catch (error) {
@@ -32,10 +30,11 @@ export default function Login() {
   };
 
   return (
-    <div className={styles.fullHeightWrapper}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles.card}>
         <div className={styles.header}>
-          <img src={LogoMaullin} alt="Logo" className={styles.logo} />
+          <h1>Seguridad plus</h1>
+          <h3>Iniciar sesion</h3>
         </div>
         <div className={styles.body}>
           <ZodForm schema={schema} onSubmit={loginUser} formOptions={{

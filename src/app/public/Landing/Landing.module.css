@@ -1,0 +1,38 @@
+.header {
+  background-color: orange;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  gap: 30px;
+}
+
+.button {
+  background-color: #eba625; /* Azul */
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 9999px; /* Máxima redondez */
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-inline: 10px;
+}
+
+.button:hover {
+  background-color: #f0b342; /* Azul más oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  background-color: #94a3b8; /* gris azulado */
+  cursor: not-allowed;
+}

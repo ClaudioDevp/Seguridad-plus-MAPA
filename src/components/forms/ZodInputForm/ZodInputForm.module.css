@@ -10,12 +10,30 @@
   color: #333;
 }
 
+.formInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.formInput > * {
+  height: 40px;
+  border: 1px solid #aeaeae;
+}
+.formInput > *:first-child {
+  border-bottom-left-radius: 20px ;
+  border-top-left-radius: 20px ;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+}
+.formInput > *:last-child {
+  border-bottom-right-radius: 20px ;
+  border-top-right-radius: 20px ;
+  padding-inline: 10px;
+}
+
 .input {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #e6e6e6;
-  border-radius: 25px;
   font-size: 14px;
   box-sizing: border-box;
 }

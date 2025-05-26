@@ -1,11 +1,12 @@
-.container {
+.card {
   width: 350px;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  border: 1px solid #cccccc;
 }
-.fullHeightWrapper {
+.container {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -16,11 +17,7 @@
   background-color: #b5933c;
   padding: 20px;
   text-align: center;
-}
-
-.logo {
-  max-width: 180px;
-  height: auto;
+  color: white;
 }
 
 .body {
@@ -44,8 +41,28 @@
   font-size: 16px;
   cursor: pointer;
   margin-top: 10px;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 .submitButton:hover {
   background-color: #9e7d2d;
+}
+.select {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding-inline: 20px;
+}
+.selectLabel {
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  color: #333;
+}
+.descriptor {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  color: #7e7e7e;
+  text-align: start;
 }

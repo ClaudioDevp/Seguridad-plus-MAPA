@@ -1,0 +1,48 @@
+.card {
+  width: 350px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: 1px solid #cccccc;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  background-color: #b5933c;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.body {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.body h2 {
+  font-size: 18px;
+  color: #2c2c2c;
+  margin-bottom: 25px;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: #b5933c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+.submitButton:hover {
+  background-color: #9e7d2d;
+}
