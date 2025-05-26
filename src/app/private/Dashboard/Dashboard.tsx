@@ -4,9 +4,10 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import { useState, useEffect, useRef } from 'react';
-import { LiveKitRoom } from '@livekit/components-react';
 import '@livekit/components-styles';
-import './Dashboard.css';
+
+const livekitUrl  = 'wss://claudev-09yjawm8.livekit.cloud';
+const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk0MTM3NTcsImlzcyI6IkFQSVBHOEVLZ1lvbWFiWSIsIm5iZiI6MTc0NjQxMzc1Nywic3ViIjoiNSIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJTZWd1cmlkYWRQdWJsaWNhIiwicm9vbUpvaW4iOnRydWV9fQ.rB-2g5cIemqhKtfeVNKA0zWZ4zRG4Wqoa2spvEftNeU';
 
 const Dashboard = () => {
   const mapRef = useRef(null);
@@ -17,13 +18,10 @@ const Dashboard = () => {
   const [estadoUbicacion, setEstadoUbicacion] = useState("Desconocido");
 
 
-  const livekitUrl  = 'wss://claudev-09yjawm8.livekit.cloud';
-  const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk0MTM3NTcsImlzcyI6IkFQSVBHOEVLZ1lvbWFiWSIsIm5iZiI6MTc0NjQxMzc1Nywic3ViIjoiNSIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJTZWd1cmlkYWRQdWJsaWNhIiwicm9vbUpvaW4iOnRydWV9fQ.rB-2g5cIemqhKtfeVNKA0zWZ4zRG4Wqoa2spvEftNeU';
 
 
 
   useEffect(() => {
-      
     const db = getFirestore();
     baseLayerRef.current = L.tileLayer();
     realMapLayerRef.current = L.tileLayer();
@@ -251,9 +249,6 @@ const Dashboard = () => {
         backgroundColor: 'rgba(0,0,0,0.5)',
         zIndex: 1000
       }}></div>
-
-
-      
     </>
   );
 };

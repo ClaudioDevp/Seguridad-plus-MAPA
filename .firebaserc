@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "mapaincidentes"
-  }
+  },
+  "targets": {
+    "mapaincidentes": {
+      "hosting": {
+        "public": [
+          "seguridadplus"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
