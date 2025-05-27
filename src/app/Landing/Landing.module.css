@@ -1,0 +1,143 @@
+.container {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+  padding: 0;
+  margin: 0;
+}
+
+.hero {
+  background-color: #eba625;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+button {
+  background-color: #1e293b;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #334155;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.steps {
+  padding: 3rem 2rem;
+  background-color: white;
+  text-align: center;
+}
+
+.steps h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stepList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.step {
+  max-width: 300px;
+  background-color: #fef9c3;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 250px;
+}
+
+.step h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: #92400e;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #374151;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  margin: auto;
+}
+
+.municipios {
+  background-color: #1e40af;
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.municipios h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.municipios p {
+  margin-bottom: 1.5rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  background-color: #111827;
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .stepList {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    width: 100%;
+    max-width: 90%;
+  }
+}
